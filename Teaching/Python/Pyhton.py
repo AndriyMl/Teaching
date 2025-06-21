@@ -2,7 +2,6 @@ import sys
 import statistics
 import random
 import csv
-import re
 
 
 #
@@ -18,15 +17,59 @@ import re
 #     def __init__(self, name, age):
 #         self.name = name
 #         self.age = age
+#     # __add__ - якщо додаватимуться елементи з однаковими класами буде додаватись те що вказате в __add__
+#     def __add__(self, other):
+#         total = self.age + other.age
+#         return f"Sum age: {total}"
+#     # @property - Дає змогу звертатися до методу як до змінної
+#     @property
+#     def name(self):
+#         return self._name
+#
+#     # @.setter - Дозволяє перевіряти або обробляти значення, яке хтось хоче поставити.
+#     @name.setter
+#     def name(self, value):
+#         if value:
+#             self._name = value
+#         else:
+#             # raise дозволяє писати пояснення помилки і чому вони відбувається
+#             raise ValueError("Name cannot be empty.")
+#
+#     @property
+#     def age(self):
+#         return self._age
+#
+#     @age.setter
+#     def age(self, value):
+#         if value >= 0:
+#             self._age = value
+#         else:
+#             raise ValueError("Age cannot be negative.")
+#     # @staticmethod - це метод який логічно належить до класу але не парцює з його параметрами
+#     @staticmethod
+#     def say_Hi():
+#         print("Hi!")
 #     # Це функція яку може виконувати class
 #     def Hello(self):
 #         print(f"{self.name} say: Hi!")
+#     # @classmethod - Стандартний обект без параметрів
+#     @classmethod
+#     def standart_name(cls): # cls означає "клас"
+#         return cls("Noname", 0)
+#     # __str__ - Керує тим, як виглядає об’єкт, коли його виводять(чи щось подібне)
+#     def __str__(self):
+#             return f"Name: {self.name}, {self.age} age"
 #
 # my_Hi = Hi("Andriy", 13)
-#
+# my_Hi_3 = Hi("Dima", 10)
+# my_Hi_2 = Hi.standart_name()
 # print(my_Hi.name)
 # print(my_Hi.age)
 # my_Hi.Hello()
+# print(my_Hi)
+# print(my_Hi_2)
+# Hi.say_Hi()
+# print(my_Hi + my_Hi_3)
 
 
 
@@ -176,6 +219,38 @@ import re
 # list
 #
 
+
+# filter() - це функція, яка проходить по всім елементам месива і залишає лиш ті, для яких функція повертає True.
+names = [
+    {"Name": "Andriy", "Class" : "Sigma", "Friend" : "Matviiy"},
+    {"Name": "Matviy", "Class" : None, "Friend" : "Andriy"},
+    {"Name": "Grigoriy", "Class" : "Ultra Sigma", "Friend" : "Python"}
+]
+
+def is_sigma(s):
+    return s["Class"] == "Sigma"
+
+sigma = filter(is_sigma, names)
+
+for name in sigma:
+    print(name["Name"])
+
+# # *args - Збирає всі позиційні аргументи у кортеж
+# # **kwargs - Збирає всі іменовані аргументи у словник.
+# def func(*args,**kwargs):
+#     print("Number:" , args)
+#     print("kwargs:", kwargs)
+#
+# func(20,30, name="Andriy", level="Sigma")
+
+# # * - підходить для знімання декорацій з масивів
+# numbers = [1, 2, 3, 4, 5]
+# print(*numbers)
+
+
+# # len() - підраховує кількість елементів в масивар кортежах словниках і строках
+# numbers = [1, 2, 3, 4, 5]
+# print(len(numbers))
 
 # # () - кортеж це набір значень, який не можна змінити після створення
 # a = (10,20,30)
@@ -330,6 +405,26 @@ import re
 #
 
 
+    # # map() - це функція яка використовує іншу функцію до кожного елемента масива кортежа списка і строки
+    # numbers = ["number"]
+    # # func = map(lambda x: x ** 2, numbers)
+    # func = map(str.upper, numbers)
+    # print(list(func))
+
+# # Праметри для цункції можна задавати одразу при її використанні
+# def sum(a,b,c):
+#     return a + b + c
+#
+# print(sum(a=100,b=20,c=40))
+
+# # -> None - Означає що функція повинна повертати лиш None тобто нічого є лиш підказкою
+# def meow(n: int) -> None:
+#     for _ in range(n):
+#         print("meow")
+#
+# result = meow(3)
+# print(result)
+
 # # lambda - це коротка функція в один рядок яка одразу з вбудованим return
 # square = lambda a: a ** 2
 # print(square(2))
@@ -384,6 +479,15 @@ import re
 #
 
 
+# # eval перероблює формат з str в число або в код
+# print(eval(input("Write example - ")))
+
+# # Також можна задати тип данних одразу напряму змінним(потрібно лише для позначення і розуміння коду)
+# intnumber: int = int(input("Write number - "))
+# floatnumber: float = float(input("Write number - "))
+# strtext: str = input("Write text - ") # Приклад з str
+# print(intnumber + floatnumber)
+
 # # Також в round можна ввести скільки чисел після коми залишется або написати f"{z:.2f}"
 # z = round(float(input("Write x - ")) + float(input("Write y - ")), 2)
 # print(z)
@@ -420,6 +524,9 @@ import re
 #
 
 
+# # type() - повертає тип данних
+# print(type("Hello"))
+
 # # sorted() - сорторує данні за даним заначеня автоматично за абеткою або за порядком спадання
 # names = []
 #
@@ -436,7 +543,9 @@ import re
 # name = name.strip()
 # # Метод .capitalize() пише перше слово з великої літери
 # name = name.capitalize()
-# # Метод .title() ише всі слова з великої літери
+# # Метод .upper() пише всі слова виликими літерами
+# name = name.upper()
+# # Метод .title() пише всі слова з великої літери
 # name = name.title()
 # # Метод .split() видає масив з видаленим символом або строкою яка вказана в методі
 # name = name.split(" ")
