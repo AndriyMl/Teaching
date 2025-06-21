@@ -2,6 +2,35 @@ import sys
 import statistics
 import random
 import csv
+import re
+
+
+#
+# Classes
+#
+
+
+# # Class - це як шаблон, а об'єкт — це конкретний екземпляр цього креслення
+# class Hi:
+#     # __init__ - задає, що відбувається при створенні об'єкта
+#     # self - об'єкт на який діє клас
+#     # name і age - це параметри які вводяться
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#     # Це функція яку може виконувати class
+#     def Hello(self):
+#         print(f"{self.name} say: Hi!")
+#
+# my_Hi = Hi("Andriy", 13)
+#
+# print(my_Hi.name)
+# print(my_Hi.age)
+# my_Hi.Hello()
+
+
+
+
 
 #
 # file
@@ -18,8 +47,6 @@ import csv
 #     # .writerow - використовується для запису одного рядка в CSV-файл.
 #     writer.writerow({"name": name, "clas":clas})
 
-# # csv - базова бібліотека яка розволяє зчитувати .csv файли (таблиці)
-# # import csv
 # humans = []
 # with open("test.csv") as file:
 #     # .reader - читає CSV-файл пострічково і перетворює кожен рядок на список значень
@@ -106,10 +133,17 @@ import csv
 
 
 
+
 #
 # bace libraries
 #
 
+
+# # regex - бібліотека яка використовується для пошуку або перевірки
+# # import re
+
+# # csv - базова бібліотека яка розволяє зчитувати .csv файли (таблиці)
+# # import csv
 
 # # sys - це стандартна бібліотека Python, яка дає доступ до системних параметрів та аргументів командного рядка
 # # import sys
@@ -142,6 +176,10 @@ import csv
 # list
 #
 
+
+# # () - кортеж це набір значень, який не можна змінити після створення
+# a = (10,20,30)
+# print(a)
 
 # # Щоб задати більше двох "харектеристик" зіміній можна поставити словник в масив
 # names = [
@@ -291,6 +329,10 @@ import csv
 #  function
 #
 
+
+# # lambda - це коротка функція в один рядок яка одразу з вбудованим return
+# square = lambda a: a ** 2
+# print(square(2))
 
 # # Автоматичний запуск функції лише в цьому файлі
 # def main():
